@@ -17,46 +17,53 @@ public class Interpreter
 {
     /// <summary>
     /// The scope.
+    /// 范围
     /// </summary>
     private ScriptScope  Scope;
  
     /// <summary>
     /// The engine.
+    /// 引擎
     /// </summary>
     private ScriptEngine Engine;
 
     /// <summary>
     /// The source.
+    /// 源
     /// </summary>
     private ScriptSource Source;
 
     /// <summary>
     /// The compiled.
+    /// 编译
     /// </summary>
     private CompiledCode Compiled;
 
     /// <summary>
     /// The operation.
+    /// 操作
     /// </summary>
     private ObjectOperations Operation;
 
     /// <summary>
     /// The python class.
+    /// python 类
     /// </summary>
     private object PythonClass;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Interpreter"/> class.
+    /// 
     /// </summary>
     public Interpreter()
     {
         Engine = Python.CreateEngine();
         Scope  = Engine.CreateScope();
-        SetLibrary();
     }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Interpreter"/> class.
+    /// 初始化一个Interpreter类的新实例
     /// </summary>
     /// <param name="source">Source.</param>
     public Interpreter(string src) : this()
@@ -66,6 +73,7 @@ public class Interpreter
 
     /// <summary>
     /// Compile the specified src.
+    /// 编译指定的资源
     /// </summary>
     /// <param name="src">Source.</param>
     public string Compile(string src, Microsoft.Scripting.SourceCodeKind CodeKind =
@@ -85,6 +93,7 @@ public class Interpreter
 
         MemoryStream stream = new MemoryStream();
         //Set IO Ouput of execution
+        //设置执行任务
         Engine.Runtime.IO.SetOutput(stream, new StreamWriter(stream));
 
         Compiled  = Source.Compile(errors);
@@ -101,6 +110,7 @@ public class Interpreter
 
     /// <summary>
     /// Formats the output of execution
+    /// 格式化执行输出
     /// </summary>
     /// <returns>The output.</returns>
     /// <param name="output">Output.</param>
@@ -114,6 +124,7 @@ public class Interpreter
 
     /// <summary>
     /// Reads MemoryStream.
+    /// 读取内存流
     /// </summary>
     /// <returns>The from stream.</returns>
     /// <param name="ms">Ms.</param>
@@ -128,24 +139,8 @@ public class Interpreter
     }
 
     /// <summary>
-    /// Set sys paths
-    /// </summary>
-    private void SetLibrary()
-    {
-        if(PythonBase.SysPath.Count > 0) {
-
-            ICollection<string> SysPath = Engine.GetSearchPaths();
-
-            foreach(string path in PythonBase.SysPath)
-                SysPath.Add(path);
-
-            Engine.SetSearchPaths(SysPath);
-
-        }
-    }
-
-    /// <summary>
     /// Load runtime Assemblies of Unity3D
+    /// 加载Unity3D的运行时程序集
     /// </summary>
     private void LoadRuntime()
     {
@@ -164,6 +159,7 @@ public class Interpreter
 
     /// <summary>
     /// Gets the variable or class
+    /// 获取变量或类
     /// </summary>
     /// <returns>The variable.</returns>
     /// <param name="name">Name.</param>
@@ -174,6 +170,7 @@ public class Interpreter
 
     /// <summary>
     /// Calls the method.
+    /// 调用这个方法
     /// </summary>
     /// <param name="name">Name.</param>
     public void InvokeMethod(object nameClass, string Method, params object[] parameters)
