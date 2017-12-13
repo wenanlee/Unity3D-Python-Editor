@@ -2,6 +2,7 @@ Unity3D-Python-Editor
 =====================
 
 在unity3d里使用python
+unity版本5.6.1
 
 > NOTE
 >
