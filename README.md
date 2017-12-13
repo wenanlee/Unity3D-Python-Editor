@@ -1,22 +1,20 @@
 Unity3D-Python-Editor
 =====================
 
-Python interface based on IronPython for Unity3D with sweet editor for inspector
-
-![ScreenShot](http://img.pandawhale.com/94867-magic-gif-Shia-Imgur-MAH7.gif)
+在unity3d里使用python
 
 > NOTE
 >
-> The project is a crazy experiment. i haven't tested about performance and others benchmarks.
-> Even though the interpreter works fine for a development environment, if you want to use Unity methods such as Start and Update (which works), 
-> i dot not recommend that you use for anything important yet.
+> 我这是用@cesardeazevedo那里弄到的,然后我精简了一下,现在只需要改动一下就可以用了.操作如下:
+> 在游戏物体上 绑定 PyRun.cs 在 PyRun.cs 上 绑定 PyFile和PyFilePath 就行了
 
-
-## Editor
-![ScreenShot](http://i.cubeupload.com/f9VN8B.png)
-
-## Interpreter
-![ScreenShot](http://i.cubeupload.com/gFjViz.png)
+`public class PyRun : MonoBehaviour
+{
+    //Python文件
+    public Object pyFile;
+    //Python文件路径
+    public string pyFilePath="Assets/src/python/";
+`
 
 ## LICENSE
 [MIT](./LICENSE)
